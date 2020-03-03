@@ -2,61 +2,61 @@
 if [ -n "$1" ]
 then
 
-cd ./../
-if [[ -d $1 ]]
-then
-cd $1
-git init
+  cd ./../
+  if [[ -d $1 ]]
+  then
+    cd $1
+    git init
+  else
+    echo "Такой папки нету, она будет создана..."
+    mkdir $1 && cd $1
+    git init
+  fi
+
+  #Settings git
+  gitGlobalName=$(git config --global user.name)
+  gitGlobalEmail=$(git config --global user.email)
+
+  echo "Текущее глобальное имя: $gitGlobalName"
+  read -p 'Введите git config user name: ' userName
+
+  echo "Текущей глобальный мейл: $gitGlobalEmail"
+  read -p 'Введите git config user email: ' userEmail
+
+  if [[ ! -z "$userName" ]]
+  then
+    git config user.name $userName
+  fi
+
+
+  if [[ ! -z "$userEmail" ]]
+  then
+    git config user.email $userEmail
+  fi
+
+  touch .gitattributes
+
+  echo "# Set the default behavior, in case people don't have core.autocrlf set.
+  * text=auto
+
+  # Explicitly declare text files you want to always be normalized and converted
+  # to native line endings on checkout.
+  *.c text
+  *.h text
+
+  # Declare files that will always have CRLF line endings on checkout.
+  *.sln text eol=lf
+
+  # Denote all files that are truly binary and should not be modified.
+  *.png binary
+  *.jpg binary " > .gitattributes
+
+  git add *
+  git status
+  git commit -m "Initial setup" 
+
 else
-echo "Такой папки нету, она будет создана..."
-mkdir $1 && cd $1
-git init
-fi
-
-#Settings git
-gitGlobalName=$(git config --global user.name)
-gitGlobalEmail=$(git config --global user.email)
-
-echo "Текущее глобальное имя: $gitGlobalName"
-read -p 'Введите git config user name: ' userName
-
-echo "Текущей глобальный мейл: $gitGlobalEmail"
-read -p 'Введите git config user email: ' userEmail
-
-if [[ ! -z "$userName" ]]
-then
-git config user.name $userName
-fi
-
-
-if [[ ! -z "$userEmail" ]]
-then
-git config user.email $userEmail
-fi
-
-touch .gitattributes
-
-echo "# Set the default behavior, in case people don't have core.autocrlf set.
-* text=auto
-
-# Explicitly declare text files you want to always be normalized and converted
-# to native line endings on checkout.
-*.c text
-*.h text
-
-# Declare files that will always have CRLF line endings on checkout.
-*.sln text eol=lf
-
-# Denote all files that are truly binary and should not be modified.
-*.png binary
-*.jpg binary " > .gitattributes
-
-git add *
-git status
-git commit -m "Initial setup" 
-
-else
-echo "No parameters found. "
+  echo "No parameters found. "
 fi
 
 
