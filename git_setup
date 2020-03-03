@@ -8,20 +8,19 @@ then
     cd $1
     git init
   else
-    echo "Такой папки нету, она будет создана..."
+    echo "There is no such folder, it will be created..."
     mkdir $1 && cd $1
     git init
   fi
 
-  #Settings git
   gitGlobalName=$(git config --global user.name)
   gitGlobalEmail=$(git config --global user.email)
 
-  echo "Текущее глобальное имя: $gitGlobalName"
-  read -p 'Введите git config user name: ' userName
+  echo "Current global name value: $gitGlobalName"
+  read -p 'Input git config user name: ' userName
 
-  echo "Текущей глобальный мейл: $gitGlobalEmail"
-  read -p 'Введите git config user email: ' userEmail
+  echo "Current global mail value: $gitGlobalEmail"
+  read -p 'Input git config user email: ' userEmail
 
   if [[ ! -z "$userName" ]]
   then
