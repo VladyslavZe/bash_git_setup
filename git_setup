@@ -56,7 +56,7 @@ then
   git commit -m "Initial setup" 
 
 else
-  echo "No parameters found. "
+  echo "No parameters found. Input parameters..."
 fi
 
 
