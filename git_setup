@@ -34,8 +34,6 @@ then
     git config user.email $userEmail
   fi
 
-  touch .gitattributes
-
   echo "# Set the default behavior, in case people don't have core.autocrlf set.
   * text=auto
 
