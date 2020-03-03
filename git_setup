@@ -1,4 +1,7 @@
 #!/bin/bash
+if [ -n "$1" ]
+then
+
 cd ./../
 if [[ -d $1 ]]
 then
@@ -17,7 +20,7 @@ gitGlobalEmail=$(git config --global user.email)
 echo "Текущее глобальное имя: $gitGlobalName"
 read -p 'Введите git config user name: ' userName
 
-echo "Текущее глобальный мейл: $gitGlobalEmail"
+echo "Текущей глобальный мейл: $gitGlobalEmail"
 read -p 'Введите git config user email: ' userEmail
 
 if [[ ! -z "$userName" ]]
@@ -51,3 +54,11 @@ echo "# Set the default behavior, in case people don't have core.autocrlf set.
 git add *
 git status
 git commit -m "Initial setup" 
+
+else
+echo "No parameters found. "
+fi
+
+
+
+
