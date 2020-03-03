@@ -22,7 +22,7 @@ read -p 'Введите git config user email: ' userEmail
 
 if [[ ! -z "$userName" ]]
 then
-git config user.name $
+git config user.name $userName
 fi
 
 
