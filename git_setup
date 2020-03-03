@@ -1,1 +1,32 @@
 #!/bin/bash
+cd ./../
+if [[ -d $1 ]]
+then
+cd $1
+git init
+else
+echo "Такой папки нету, она будет создана..."
+mkdir $1 && cd $1
+git init
+fi
+
+#Settings git
+gitGlobalName=$(git config --global user.name)
+gitGlobalEmail=$(git config --global user.email)
+
+echo "Текущее глобальное имя: $gitGlobalName"
+read -p 'Введите git config user name: ' userName
+
+echo "Текущее глобальный мейл: $gitGlobalEmail"
+read -p 'Введите git config user email: ' userEmail
+
+if [[ ! -z "$userName" ]]
+then
+git config user.name $
+fi
+
+
+if [[ ! -z "$userEmail" ]]
+then
+git config user.email $userEmail
+fi
